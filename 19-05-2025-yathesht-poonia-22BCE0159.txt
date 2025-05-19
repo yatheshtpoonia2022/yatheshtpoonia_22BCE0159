@@ -1,0 +1,48 @@
+show tables ;
+desc student;
+alter table student drop column student_address ;
+insert into student values("Ram",14);
+insert into student values("Mohan",22);
+select * from student ;
+truncate student ;
+start transaction;
+insert into student values("Neel",18);
+savepoint a11;
+insert into student values("Kyle",23) ;
+savepoint a12;
+delete from student where student_name="Kyle";
+select * from student ;
+rollback to a11 ;
+select student_name from student ;
+select student_name as stud_name from student ;
+select student_name as naame from student where student_age > 20 ;
+select student_name as naame from student where student_age < 20 ;
+select student_name as naame from student where student_age = 18 ;
+insert into student values("Ram",18);
+
+---------------------------------------------------------------------
+create database vit ;
+CREATE TABLE Worker (
+	WORKER_ID INT ,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY INT(15),
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25)
+);
+use vit;
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+		(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+		(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+		(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+		(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+		(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+		(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+select * from Worker ;
+select 	FIRST_NAME,DEPARTMENT FROM Worker WHERE SALARY < 200000 AND DEPARTMENT='Admin' OR DEPARTMENT='HR' ;
+select 	FIRST_NAME,DEPARTMENT FROM Worker WHERE SALARY < 300000 AND SALARY > 100000 AND (DEPARTMENT='Admin' OR DEPARTMENT='Account') ;
+SELECT * FROM Worker WHERE SALARY % 2 = 0 AND SALARY = (SELECT MAX(SALARY)FROM Worker WHERE SALARY % 2 = 0 AND DEPARTMENT IN ('HR', 'Admin')) AND DEPARTMENT IN ('HR', 'Admin');
+
