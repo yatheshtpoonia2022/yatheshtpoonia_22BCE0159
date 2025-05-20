@@ -1,0 +1,27 @@
+drop database ecom ;
+create database ecom ;
+use ecom ;
+create table category(c_id int primary key, c_name varchar(40), c_description varchar(80));
+create table product(
+	p_id int primary key,
+    c_id int,
+    p_name varchar(40),
+    p_description varchar(40),
+    foreign key product(c_id) references category(c_id) on delete cascade
+);
+
+insert into category values(101,'Electronics','assdffdf');
+insert into category values(102,'Cosmetics','assdfdfgfgdffdf');
+insert into category values(103,'Furniture','assddsssfdklffdf');
+
+insert into product values(201,101,'Charger','gghbgbvvxb');
+insert into product values(202,102,'Shavinfg Cream','gghbgccdcbvvxb');
+insert into product values(203,103,'Table','gghbgmknkbvvxb');
+
+delete from category where c_id=101;
+insert into category values(104,'Vehicle','ashhbcn');
+delete from category where c_id=104 ;
+desc product ;
+select * from product ;
+alter table product drop foreign key c_id ;
+alter table product add check(c_id > 100) ;
